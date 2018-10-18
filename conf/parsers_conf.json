@@ -1,0 +1,4 @@
+{
+  "scss":  "{__DIR__}/../../app/public/scss",
+  "php":  "{__DIR__}/../../"
+}
