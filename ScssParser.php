@@ -36,10 +36,14 @@ class ScssParser {
 	}
 	private function parse_part2() {
 		foreach ($this->doc as $id => $doc) {
-			if(preg_match('`\/[\*]{2,2}\n([^\*]+)\*\/`', $doc, $matches)) {
+			preg_match('`\/[\*]{2,2}\n([^\*]+)\*\/`', $doc, $matches);
+			if(!empty($matches)) {
 				$doc_content = $matches[1];
 				$doc_content = explode("\n@", $doc_content);
 				$this->doc[$id] = $doc_content;
+			}
+			else {
+				unset($this->doc[$id]);
 			}
 		}
 	}
@@ -83,20 +87,27 @@ class ScssParser {
 					$doc_tmp[$key] = implode("\n", $content);
 				}
 			}
-			$this->doc[$id] = $doc_tmp;
+			if(!empty($doc_tmp)) {
+				$this->doc[$id] = $doc_tmp;
+			}
 		}
 	}
 	private function parse_part5() {
 		foreach ($this->doc as $id => $doc) {
-			$modifiers = $doc['modifiers'];
-			$modifiers = explode("\n", $modifiers);
-			$modifiers_tmp = [];
-			foreach ($modifiers as $modifier) {
-				$modifier = explode(' - ', $modifier);
-				$modifiers_tmp[$modifier[0]] = $modifier[1];
+			if(isset($doc['modifier']) && $doc['modifiers'] !== null) {
+				$modifiers     = $doc['modifiers'];
+				$modifiers     = explode("\n", $modifiers);
+				$modifiers_tmp = [];
+				foreach ($modifiers as $modifier) {
+					$modifier                    = explode(' - ', $modifier);
+					$modifiers_tmp[$modifier[0]] = $modifier[1];
+				}
+				$modifiers                   = $modifiers_tmp;
+				$this->doc[$id]['modifiers'] = $modifiers;
 			}
-			$modifiers = $modifiers_tmp;
-			$this->doc[$id]['modifiers'] = $modifiers;
+			else {
+				unset($this->doc[$id]['modifiers']);
+			}
 		}
 	}
 }
