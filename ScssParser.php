@@ -94,7 +94,7 @@ class ScssParser {
 	}
 	private function parse_part5() {
 		foreach ($this->doc as $id => $doc) {
-			if(isset($doc['modifier']) && $doc['modifiers'] !== null) {
+			if($doc['modifiers'] !== null) {
 				$modifiers     = $doc['modifiers'];
 				$modifiers     = explode("\n", $modifiers);
 				$modifiers_tmp = [];
