@@ -1,4 +1,4 @@
 {
   "sass":  "{__DIR__}/../../app/public/scss",
-  "php":  "{__DIR__}/../../"
+  "php":  "{__DIR__}/../../app/public/mvc"
 }

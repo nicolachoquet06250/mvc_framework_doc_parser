@@ -10,8 +10,7 @@ class ScssParser {
 		$inline = ['author', 'date', 'title'];
 
 	public function parse() {
-		$scss_source = Path::get('core_doc-parser_parsers-conf_sass');
-		$this->parse_part1($scss_source);
+		$this->parse_part1(Path::get('core_doc-parser_parsers-conf_sass'));
 		$this->parse_part2();
 		$this->parse_part3();
 		$this->parse_part4();
