@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false" bootstrap="autoload.php">
+	<testsuites>
+		<testsuite name="All Unit Tests">
+			<file>AllTests.php</file>
+		</testsuite>
+	</testsuites>
+
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">../../../core/private/class</directory>
+			<directory suffix=".php">../../../custom/modules/*/system/class</directory>
+			<!--<exclude>-->
+				<!--<directory suffix=".php">../../../core/private/libs/Doc_framework/libs</directory>-->
+				<!--<file>../../../core/private/class/CF/ServicesWrapper.php</file>-->
+			<!--</exclude>-->
+		</whitelist>
+	</filter>
+</phpunit>
